@@ -2,6 +2,7 @@
   "name": "monitor-admin",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/admin",
   "dependencies": {
     "admin-on-rest": "^1.3.2",
     "aor-embedded-array": "0.0.3",
