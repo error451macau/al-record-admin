@@ -7,6 +7,7 @@ export const DeputyList = (props) => (
             <TextField source="id" />
             <TextField label="Name (Chi)" source="nameChi" />
             <TextField label="Name (Port)" source="namePort" />
+            <TextField label="Slug" source="slug" />
             <TextField source="email" />
             <EditButton />
         </Datagrid>
@@ -25,6 +26,7 @@ export const DeputyEdit = (props) => (
 
                 <TextInput label="Chinese Name" source="nameChi" />
                 <TextInput label="Eng/Port Name" source="namePort" />
+                <TextInput label="Slug" source="slug" />
                 <RadioButtonGroupInput label="Elected Method" source="electedMethod" choices={[
                     { id: 'direct', name: 'Direct' },
                     { id: 'indirect', name: 'Indirect' },

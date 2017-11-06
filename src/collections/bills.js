@@ -7,6 +7,7 @@ export const BillList = (props) => (
         <Datagrid>
             <TextField source="id" />
             <TextField source="title" />
+            <TextField label="Slug" source="slug" />
             <ReferenceField label="Proposer" source="proposerDeputyId" reference="deputies">
                 <TextField source="nameChi" />
             </ReferenceField>
@@ -31,6 +32,7 @@ export const BillEdit = (props) => (
             <FormTab label="Basic Info">
                 <DisabledInput label="ID" source="id" />
                 <TextInput source="title" />
+                <TextInput label="Slug" source="slug" />
                 
                 <ReferenceInput label="Proposer" source="proposerId" reference="deputies" allowEmpty>
                     <SelectInput optionText="nameChi" />

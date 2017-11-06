@@ -6,6 +6,7 @@ export const DocumentList = (props) => (
         <Datagrid>
             <TextField source="id" />
             <TextField source="title" />
+            <TextField label="Slug" source="slug" />
             <ReferenceArrayField label="Tags" reference="tags" source="tagIds">
                 <SingleFieldList>
                     <ChipField source="name" />
@@ -17,11 +18,16 @@ export const DocumentList = (props) => (
     </List>
 );
 
+const FormTitle = ({record}) => {
+    return <span>Document "{record ? record.title : ''}"</span>;
+}
+
 export const DocumentEdit = (props) => (
-    <Edit {...props}>
+    <Edit title={<FormTitle />} {...props}>
         <SimpleForm>
             <DisabledInput label="ID" source="id" />
             <TextInput source="title" />
+            <TextInput label="Slug" source="slug" />
             <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
                 <SelectArrayInput optionText="name" />
             </ReferenceArrayInput>
@@ -34,6 +40,7 @@ export const DocumentCreate = (props) => (
     <Create {...props}>
         <SimpleForm>
             <TextInput source="title" />
+            <TextInput label="Slug" source="slug" />
             <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
                 <SelectArrayInput optionText="name" />
             </ReferenceArrayInput>
