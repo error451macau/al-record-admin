@@ -8,7 +8,7 @@ export const DeputyList = (props) => (
             <TextField label="Name (Chi)" source="nameChi" />
             <TextField label="Name (Port)" source="namePort" />
             <TextField label="Slug" source="slug" />
-            <TextField source="email" />
+            <TextField label="Elected Method" source="electedMethod" />
             <EditButton />
         </Datagrid>
     </List>
