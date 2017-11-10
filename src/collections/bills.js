@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Edit, Create, Datagrid, DateField, TextField, EditButton, DisabledInput, SimpleForm, TextInput, DateInput, ReferenceArrayInput, SelectArrayInput, ReferenceArrayField, SingleFieldList, ChipField, LongTextInput, ReferenceInput, SelectInput, TabbedForm, FormTab, ReferenceField, RadioButtonGroupInput } from 'admin-on-rest';
+import { List, Edit, Create, Datagrid, DateField, TextField, EditButton, DisabledInput, SimpleForm, TextInput, DateInput, ReferenceArrayInput, SelectArrayInput, LongTextInput, ReferenceInput, SelectInput, TabbedForm, FormTab, ReferenceField, RadioButtonGroupInput } from 'admin-on-rest';
 import { EmbeddedArrayInput } from 'aor-embedded-array';
 
 export const BillList = (props) => (
@@ -11,11 +11,7 @@ export const BillList = (props) => (
             <ReferenceField label="Proposer" source="proposerDeputyId" reference="deputies">
                 <TextField source="nameChi" />
             </ReferenceField>
-            <ReferenceArrayField label="Tags" reference="tags" source="tagIds">
-                <SingleFieldList>
-                    <ChipField source="name" />
-                </SingleFieldList>
-            </ReferenceArrayField>
+            <TextField source="result" />
             <DateField source="date" />
             <EditButton />
         </Datagrid>
@@ -34,7 +30,7 @@ export const BillEdit = (props) => (
                 <TextInput source="title" />
                 <TextInput label="Slug" source="slug" />
                 
-                <ReferenceInput label="Proposer" source="proposerId" reference="deputies" allowEmpty>
+                <ReferenceInput label="Proposer" source="proposerDeputyId" reference="deputies" allowEmpty>
                     <SelectInput optionText="nameChi" />
                 </ReferenceInput>
 
@@ -47,6 +43,11 @@ export const BillEdit = (props) => (
                 <ReferenceInput label="Full Text (Document)" source="fullTextDocumentId" reference="documents" allowEmpty>
                     <SelectInput optionText="title" />
                 </ReferenceInput>
+
+                <RadioButtonGroupInput label="Result" source="result" choices={[
+                    { id: 'Y', name: 'Approved' },
+                    { id: 'N', name: 'Not Approved' },
+                ]} />
 
                 <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
                     <SelectArrayInput optionText="name" />
