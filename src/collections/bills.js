@@ -56,8 +56,8 @@ export const BillEdit = (props) => (
                 <DateInput source="date" />
             </FormTab>
 
-            <FormTab label="Voting Result">
-                <EmbeddedArrayInput label="" source="votingResult">
+            <FormTab label="Deputy Votes">
+                <EmbeddedArrayInput label="" source="deputyVotes">
                     <ReferenceInput label="Deputy" source="deputyId" reference="deputies" allowEmpty>
                         <SelectInput optionText="nameChi" />
                     </ReferenceInput>
