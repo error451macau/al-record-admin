@@ -6,10 +6,10 @@ export const BillList = (props) => (
     <List {...props}>
         <Datagrid>
             <TextField source="id" />
-            <TextField source="title" />
+            <TextField label="Title (Chinese)" source="title.zh" />
             <TextField label="Slug" source="slug" />
             <ReferenceField label="Proposer" source="proposerDeputyId" reference="deputies">
-                <TextField source="nameChi" />
+                <TextField source="name.zh" />
             </ReferenceField>
             <TextField source="result" />
             <DateField source="date" />
@@ -19,7 +19,7 @@ export const BillList = (props) => (
 );
 
 const FormTitle = ({record}) => {
-    return <span>Bill "{record ? record.title : ''}"</span>;
+    return <span>Bill "{record ? record.title.zh : ''}"</span>;
 }
 
 export const BillEdit = (props) => (
@@ -27,21 +27,23 @@ export const BillEdit = (props) => (
         <TabbedForm>
             <FormTab label="Basic Info">
                 <DisabledInput label="ID" source="id" />
-                <TextInput source="title" />
+                <TextInput label="Title (Chinese)" source="title.zh" />
+                <TextInput label="Title (English)" source="title.en" />
                 <TextInput label="Slug" source="slug" />
                 
                 <ReferenceInput label="Proposer" source="proposerDeputyId" reference="deputies" allowEmpty>
-                    <SelectInput optionText="nameChi" />
+                    <SelectInput optionText="name.zh" />
                 </ReferenceInput>
 
-                <LongTextInput source="synopsis" />
+                <LongTextInput label="Synopsis (Chinese)" source="synopsis.zh" />
+                <LongTextInput label="Synopsis (English)" source="synopsis.en" />
 
                 <ReferenceInput label="Statement (Document)" source="statementDocumentId" reference="documents" allowEmpty>
-                    <SelectInput optionText="title" />
+                    <SelectInput optionText="title.zh" />
                 </ReferenceInput>
 
                 <ReferenceInput label="Full Text (Document)" source="fullTextDocumentId" reference="documents" allowEmpty>
-                    <SelectInput optionText="title" />
+                    <SelectInput optionText="title.zh" />
                 </ReferenceInput>
 
                 <RadioButtonGroupInput label="Result" source="result" choices={[
@@ -50,7 +52,7 @@ export const BillEdit = (props) => (
                 ]} />
 
                 <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
-                    <SelectArrayInput optionText="name" />
+                    <SelectArrayInput optionText="name.zh" />
                 </ReferenceArrayInput>
 
                 <DateInput source="date" />
@@ -59,7 +61,7 @@ export const BillEdit = (props) => (
             <FormTab label="Deputy Votes">
                 <EmbeddedArrayInput label="" source="deputyVotes">
                     <ReferenceInput label="Deputy" source="deputyId" reference="deputies" allowEmpty>
-                        <SelectInput optionText="nameChi" />
+                        <SelectInput optionText="name.zh" />
                     </ReferenceInput>
                     <RadioButtonGroupInput label="Vote" source="vote" options={{className: 'bill__voting-result__item__vote'}} choices={[
                         { id: 'Y', name: 'Yes' },
@@ -67,7 +69,8 @@ export const BillEdit = (props) => (
                         { id: 'P', name: 'Abstain' },
                         { id: 'A', name: 'Absent' },
                     ]} />
-                    <LongTextInput label="Comment (Optional)" source="comment" />
+                    <LongTextInput label="Comment (Chinese, Optional)" source="comment.zh" />
+                    <LongTextInput label="Comment (English, Optional)" source="comment.en" />
                 </EmbeddedArrayInput>
             </FormTab>
         </TabbedForm>
@@ -77,7 +80,8 @@ export const BillEdit = (props) => (
 export const BillCreate = (props) => (
     <Create {...props}>
         <SimpleForm>
-            <TextInput source="title" />
+            <TextInput label="Title (Chinese)" source="title.zh" />
+            <TextInput label="Title (English)" source="title.en" />
             <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
                 <SelectArrayInput optionText="name" />
             </ReferenceArrayInput>

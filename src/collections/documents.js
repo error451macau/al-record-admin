@@ -5,11 +5,11 @@ export const DocumentList = (props) => (
     <List {...props}>
         <Datagrid>
             <TextField source="id" />
-            <TextField source="title" />
+            <TextField label="Title (Chinese)" source="title.zh" />
             <TextField label="Slug" source="slug" />
             <ReferenceArrayField label="Tags" reference="tags" source="tagIds">
                 <SingleFieldList>
-                    <ChipField source="name" />
+                    <ChipField source="name.zh" />
                 </SingleFieldList>
             </ReferenceArrayField>
             <DateField source="date" />
@@ -19,17 +19,18 @@ export const DocumentList = (props) => (
 );
 
 const FormTitle = ({record}) => {
-    return <span>Document "{record ? record.title : ''}"</span>;
+    return <span>Document "{record && record.title ? record.title.zh : ''}"</span>;
 }
 
 export const DocumentEdit = (props) => (
     <Edit title={<FormTitle />} {...props}>
         <SimpleForm>
             <DisabledInput label="ID" source="id" />
-            <TextInput source="title" />
+            <TextInput label="Title (Chinese)" source="title.zh" />
+            <TextInput label="Title (English)" source="title.en" />
             <TextInput label="Slug" source="slug" />
             <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
-                <SelectArrayInput optionText="name" />
+                <SelectArrayInput optionText="name.zh" />
             </ReferenceArrayInput>
             <TextInput label="Original URL" source="originalUrl" />
         </SimpleForm>
@@ -39,10 +40,11 @@ export const DocumentEdit = (props) => (
 export const DocumentCreate = (props) => (
     <Create {...props}>
         <SimpleForm>
-            <TextInput source="title" />
+            <TextInput label="Title (Chinese)" source="title.zh" />
+            <TextInput label="Title (English)" source="title.en" />
             <TextInput label="Slug" source="slug" />
             <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
-                <SelectArrayInput optionText="name" />
+                <SelectArrayInput optionText="name.zh" />
             </ReferenceArrayInput>
             <DateInput source="date" />
             <TextInput label="Original URL" source="originalUrl" type="url" />

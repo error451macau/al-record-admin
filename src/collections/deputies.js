@@ -5,8 +5,8 @@ export const DeputyList = (props) => (
     <List {...props}>
         <Datagrid>
             <TextField source="id" />
-            <TextField label="Name (Chi)" source="nameChi" />
-            <TextField label="Name (Port)" source="namePort" />
+            <TextField label="Name (Chi)" source="name.zh" />
+            <TextField label="Name (Port)" source="name.en" />
             <TextField label="Slug" source="slug" />
             <TextField label="Elected Method" source="electedMethod" />
             <EditButton />
@@ -15,7 +15,7 @@ export const DeputyList = (props) => (
 );
 
 const FormTitle = ({record}) => {
-    return <span>Deputy {record ? record.nameChi : ''}</span>;
+    return <span>Deputy {record && record.name ? record.name.zh : ''}</span>;
 }
 
 export const DeputyEdit = (props) => (
@@ -24,8 +24,8 @@ export const DeputyEdit = (props) => (
             <FormTab label="Basic Info">
                 <DisabledInput label="ID" source="id" />
 
-                <TextInput label="Chinese Name" source="nameChi" />
-                <TextInput label="Eng/Port Name" source="namePort" />
+                <TextInput label="Chinese Name" source="name.zh" />
+                <TextInput label="Eng/Port Name" source="name.en" />
                 <TextInput label="Slug" source="slug" />
                 <RadioButtonGroupInput label="Elected Method" source="electedMethod" choices={[
                     { id: 'direct', name: 'Direct' },
@@ -33,13 +33,16 @@ export const DeputyEdit = (props) => (
                     { id: 'appointed', name: 'Appointed' },
                 ]} />
 
-                <LongTextInput label="Qualifications" source="qualifications" />
-                <LongTextInput label="Job" source="job" />
+                <LongTextInput label="Qualifications (Chinese)" source="qualifications.zh" />
+                <LongTextInput label="Qualifications (English)" source="qualifications.en" />
+                <LongTextInput label="Job (Chinese)" source="job.zh" />
+                <LongTextInput label="Job (English)" source="job.en" />
                 <NumberInput label="Legco Member Since" source="memberSince" />
             </FormTab>
 
             <FormTab label="Contact Info">
-                <TextInput label="Contact Address" source="contact.address" />
+                <TextInput label="Contact Address (Chinese)" source="contact.address.zh" />
+                <TextInput label="Contact Address (English)" source="contact.address.en" />
                 <TextInput label="Contact Email" source="contact.email" type="email" />
                 <TextInput label="Website" source="contact.website" type="url" />
                 <TextInput label="Phone" source="contact.phone" type="tel" />
@@ -53,7 +56,7 @@ export const DeputyEdit = (props) => (
                 <NumberInput label="# of Owned Company" source="property.companyCount" />
                 <NumberInput label="# of Owned NGO" source="property.ngoCount" />
                 <ReferenceInput label="Declaration Document" source="property.declarationDocumentId" reference="documents" allowEmpty>
-                    <SelectInput optionText="title" />
+                    <SelectInput optionText="title.zh" />
                 </ReferenceInput>
             </FormTab>
         </TabbedForm>
