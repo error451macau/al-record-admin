@@ -12,15 +12,18 @@ import DocumentIcon from 'material-ui/svg-icons/editor/insert-drive-file';
 import TagIcon from 'material-ui/svg-icons/action/label';
 
 import authClient from './authClient';
+import addUploadFeature from './addUploadFeature';
 
 const httpClient = (url, options = {}) => {
     options.credentials = 'include'; // attach credential/cookie to fetch requests
     return fetchUtils.fetchJson(url, options);
 }
 
+const restClient = jsonServerRestClient('http://127.0.0.1/api', httpClient);
+const uploadCapableClient = addUploadFeature(restClient);
 
 const App = () => (
-  <Admin restClient={jsonServerRestClient('http://127.0.0.1/api', httpClient)} authClient={authClient} title="ERROR 451 Legco Monitor Admin">
+  <Admin restClient={uploadCapableClient} authClient={authClient} title="ERROR 451 Legco Monitor Admin">
     <Resource name="deputies" icon={DeputyIcon} list={DeputyList} edit={DeputyEdit} />
     <Resource name="bills" icon={BillIcon} list={BillList} edit={BillEdit} create={BillCreate} remove={Delete} />
     <Resource name="documents" icon={DocumentIcon} list={DocumentList} edit={DocumentEdit} create={DocumentCreate} remove={Delete} />

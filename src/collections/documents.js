@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Edit, Create, Datagrid, DateField, TextField, EditButton, DisabledInput, SimpleForm, TextInput, DateInput, ReferenceArrayInput, SelectArrayInput, ReferenceArrayField, SingleFieldList, ChipField } from 'admin-on-rest';
+import { List, Edit, Create, Datagrid, DateField, TextField, EditButton, DisabledInput, SimpleForm, TextInput, DateInput, ReferenceArrayInput, SelectArrayInput, FileInput, ReferenceArrayField, SingleFieldList, ChipField, FileField } from 'admin-on-rest';
 
 export const DocumentList = (props) => (
     <List {...props}>
@@ -33,6 +33,9 @@ export const DocumentEdit = (props) => (
                 <SelectArrayInput optionText="name.zh" />
             </ReferenceArrayInput>
             <TextInput label="Original URL" source="originalUrl" />
+            <FileInput label="File" source="files">
+                <FileField source="src" title="title" />
+            </FileInput>
         </SimpleForm>
     </Edit>
 );
@@ -48,6 +51,9 @@ export const DocumentCreate = (props) => (
             </ReferenceArrayInput>
             <DateInput source="date" />
             <TextInput label="Original URL" source="originalUrl" type="url" />
+            <FileInput label="File" source="files">
+                <FileField source="src" title="title" />
+            </FileInput>
         </SimpleForm>
     </Create>
 );
