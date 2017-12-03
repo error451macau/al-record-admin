@@ -4,7 +4,7 @@ export default (type, params) => {
     if (type === AUTH_LOGIN) {
         const { username, password } = params;
 
-        const request = new Request('http://127.0.0.1/api/login', {
+        const request = new Request('https://al.error451macau.com/api/login', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -20,7 +20,7 @@ export default (type, params) => {
             })
     }
     if (type === AUTH_LOGOUT) {
-        const request = new Request('http://127.0.0.1/api/logout', {
+        const request = new Request('https://al.error451macau.com/api/logout', {
             method: 'POST',
             credentials: 'include'
         });
