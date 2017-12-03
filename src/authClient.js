@@ -1,4 +1,6 @@
-import { AUTH_LOGIN, AUTH_LOGOUT } from 'admin-on-rest';
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK } from 'admin-on-rest';
+
+var authenticated = false;
 
 export default (type, params) => {
     if (type === AUTH_LOGIN) {
@@ -16,10 +18,9 @@ export default (type, params) => {
                 if (response.status < 200 || response.status >= 300) {
                     throw new Error(response.statusText);
                 }
-                window.hello = response;
+                authenticated = true;
             })
-    }
-    if (type === AUTH_LOGOUT) {
+    } else if (type === AUTH_LOGOUT) {
         const request = new Request('https://al.error451macau.com/api/logout', {
             method: 'POST',
             credentials: 'include'
@@ -30,6 +31,9 @@ export default (type, params) => {
                 if (response.status < 200 || response.status >= 300) {
                     throw new Error(response.statusText);
                 }
+                authenticated = false;
             })
+    } else if (type === AUTH_CHECK) {
+        return authenticated ? Promise.resolve() : Promise.reject();
     }
 };
