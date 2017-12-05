@@ -38,13 +38,9 @@ export const BillEdit = (props) => (
                 <LongTextInput label="Synopsis (Chinese)" source="synopsis.zh" />
                 <LongTextInput label="Synopsis (English)" source="synopsis.en" />
 
-                <ReferenceInput label="Statement (Document)" source="statementDocumentId" reference="documents" allowEmpty>
-                    <SelectInput optionText="title.zh" />
-                </ReferenceInput>
-
-                <ReferenceInput label="Full Text (Document)" source="fullTextDocumentId" reference="documents" allowEmpty>
-                    <SelectInput optionText="title.zh" />
-                </ReferenceInput>
+                <ReferenceArrayInput label="Documents" source="documentIds" reference="documents" allowEmpty>
+                    <SelectArrayInput optionText="title.zh" />
+                </ReferenceArrayInput>
 
                 <RadioButtonGroupInput label="Result" source="result" choices={[
                     { id: 'Y', name: 'Approved' },

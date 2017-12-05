@@ -32,6 +32,7 @@ export const DocumentEdit = (props) => (
             <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
                 <SelectArrayInput optionText="name.zh" />
             </ReferenceArrayInput>
+            <DateInput source="date" />
             <TextInput label="Original URL" source="originalUrl" />
             <FileInput label="File" source="files">
                 <FileField source="src" title="title" />
