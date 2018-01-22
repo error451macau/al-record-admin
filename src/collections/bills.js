@@ -45,6 +45,8 @@ export const BillEdit = (props) => (
                 <RadioButtonGroupInput label="Result" source="result" choices={[
                     { id: 'Y', name: 'Approved' },
                     { id: 'N', name: 'Not Approved' },
+                    { id: 'P', name: 'Pending' },
+                    { id: 'W', name: 'Withdrawn' },
                 ]} />
 
                 <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
@@ -79,7 +81,7 @@ export const BillCreate = (props) => (
             <TextInput label="Title (Chinese)" source="title.zh" />
             <TextInput label="Title (English)" source="title.en" />
             <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
-                <SelectArrayInput optionText="name" />
+                <SelectArrayInput optionText="name.zh" />
             </ReferenceArrayInput>
             <DateInput source="date" />
         </SimpleForm>
