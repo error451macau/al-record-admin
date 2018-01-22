@@ -19,7 +19,9 @@ const httpClient = (url, options = {}) => {
     return fetchUtils.fetchJson(url, options);
 }
 
-const restClient = jsonServerRestClient('https://al.error451macau.com/api', httpClient);
+const apiBase = (localStorage && localStorage.API_BASE) ? localStorage.API_BASE : 'https://al.error451macau.com/api';
+
+const restClient = jsonServerRestClient(apiBase, httpClient);
 const uploadCapableClient = addUploadFeature(restClient);
 
 const App = () => (
