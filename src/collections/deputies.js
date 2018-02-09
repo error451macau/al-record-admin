@@ -55,7 +55,7 @@ export const DeputyEdit = (props) => (
                 <NumberInput label="# of Owned Land" source="property.landCount" />
                 <NumberInput label="# of Owned Company" source="property.companyCount" />
                 <NumberInput label="# of Owned NGO" source="property.ngoCount" />
-                <ReferenceInput label="Declaration Document" source="property.declarationDocumentId" reference="documents" allowEmpty>
+                <ReferenceInput label="Declaration Document" source="property.declarationDocumentId" reference="documents" perPage={1000} allowEmpty>
                     <SelectInput optionText="title.zh" />
                 </ReferenceInput>
             </FormTab>

@@ -29,7 +29,7 @@ export const DocumentEdit = (props) => (
             <TextInput label="Title (Chinese)" source="title.zh" />
             <TextInput label="Title (English)" source="title.en" />
             <TextInput label="Slug" source="slug" />
-            <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
+            <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" perPage={1000} allowEmpty>
                 <SelectArrayInput optionText="name.zh" />
             </ReferenceArrayInput>
             <DateInput source="date" />
@@ -47,7 +47,7 @@ export const DocumentCreate = (props) => (
             <TextInput label="Title (Chinese)" source="title.zh" />
             <TextInput label="Title (English)" source="title.en" />
             <TextInput label="Slug" source="slug" />
-            <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
+            <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" perPage={1000} allowEmpty>
                 <SelectArrayInput optionText="name.zh" />
             </ReferenceArrayInput>
             <DateInput source="date" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Edit, Create, Datagrid, DateField, TextField, EditButton, DisabledInput, SimpleForm, TextInput, DateInput, ReferenceArrayInput, SelectArrayInput, LongTextInput, ReferenceInput, SelectInput, TabbedForm, FormTab, ReferenceField, RadioButtonGroupInput } from 'admin-on-rest';
+import { List, Edit, Create, Datagrid, DateField, TextField, EditButton, BooleanInput, DisabledInput, SimpleForm, TextInput, DateInput, ReferenceArrayInput, SelectArrayInput, LongTextInput, ReferenceInput, SelectInput, TabbedForm, FormTab, ReferenceField, RadioButtonGroupInput } from 'admin-on-rest';
 import { EmbeddedArrayInput } from 'aor-embedded-array';
 
 export const BillList = (props) => (
@@ -31,14 +31,15 @@ export const BillEdit = (props) => (
                 <TextInput label="Title (English)" source="title.en" />
                 <TextInput label="Slug" source="slug" />
                 
-                <ReferenceInput label="Proposer" source="proposerDeputyId" reference="deputies" allowEmpty>
+                <BooleanInput label="Propsed by Government?" source="proposedByGovernment" />
+                <ReferenceInput label="Proposer (Ignored if Proposed by Goverment)" source="proposerDeputyId" reference="deputies" perPage={1000} allowEmpty>
                     <SelectInput optionText="name.zh" />
                 </ReferenceInput>
 
                 <LongTextInput label="Synopsis (Chinese)" source="synopsis.zh" />
                 <LongTextInput label="Synopsis (English)" source="synopsis.en" />
 
-                <ReferenceArrayInput label="Documents" source="documentIds" reference="documents" allowEmpty>
+                <ReferenceArrayInput label="Documents" source="documentIds" reference="documents" perPage={1000} allowEmpty>
                     <SelectArrayInput optionText="title.zh" />
                 </ReferenceArrayInput>
 
@@ -49,7 +50,7 @@ export const BillEdit = (props) => (
                     { id: 'W', name: 'Withdrawn' },
                 ]} />
 
-                <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
+                <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" perPage={1000} allowEmpty>
                     <SelectArrayInput optionText="name.zh" />
                 </ReferenceArrayInput>
 
@@ -58,7 +59,7 @@ export const BillEdit = (props) => (
 
             <FormTab label="Deputy Votes">
                 <EmbeddedArrayInput label="" source="deputyVotes">
-                    <ReferenceInput label="Deputy" source="deputyId" reference="deputies" allowEmpty>
+                    <ReferenceInput label="Deputy" source="deputyId" reference="deputies" perPage={1000} allowEmpty>
                         <SelectInput optionText="name.zh" />
                     </ReferenceInput>
                     <RadioButtonGroupInput label="Vote" source="vote" options={{className: 'bill__voting-result__item__vote'}} choices={[
@@ -80,7 +81,7 @@ export const BillCreate = (props) => (
         <SimpleForm>
             <TextInput label="Title (Chinese)" source="title.zh" />
             <TextInput label="Title (English)" source="title.en" />
-            <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" allowEmpty>
+            <ReferenceArrayInput label="Tags" source="tagIds" reference="tags" perPage={1000} allowEmpty>
                 <SelectArrayInput optionText="name.zh" />
             </ReferenceArrayInput>
             <DateInput source="date" />
