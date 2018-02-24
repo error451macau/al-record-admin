@@ -1,6 +1,22 @@
 import React from 'react';
-import { List, Edit, Create, Datagrid, DateField, TextField, EditButton, BooleanInput, DisabledInput, SimpleForm, TextInput, DateInput, ReferenceArrayInput, SelectArrayInput, LongTextInput, ReferenceInput, SelectInput, TabbedForm, FormTab, ReferenceField, RadioButtonGroupInput } from 'admin-on-rest';
+import { List, Edit, Create, Datagrid, DateField, TextField, EditButton, BooleanInput, DisabledInput, SimpleForm, TextInput, DateInput, ReferenceInput, ReferenceArrayInput, SelectArrayInput, LongTextInput, SelectInput, TabbedForm, FormTab, ReferenceArrayField, RadioButtonGroupInput, SingleFieldList, ChipField } from 'admin-on-rest';
 import { EmbeddedArrayInput } from 'aor-embedded-array';
+
+const ProposersField = (props) => {
+    var record = props.record || {};
+
+    if(record.proposedByGovernment){
+        return <span>(Government)</span>;
+    } else {
+        return (
+            <ReferenceArrayField {...props}>
+                <SingleFieldList>
+                    <ChipField source="name.zh" />
+                </SingleFieldList>
+            </ReferenceArrayField>
+        );
+    }
+}
 
 export const BillList = (props) => (
     <List {...props}>
@@ -8,9 +24,7 @@ export const BillList = (props) => (
             <TextField source="id" />
             <TextField label="Title (Chinese)" source="title.zh" />
             <TextField label="Slug" source="slug" />
-            <ReferenceField label="Proposer" source="proposerDeputyId" reference="deputies">
-                <TextField source="name.zh" />
-            </ReferenceField>
+            <ProposersField label="Proposer" source="proposerDeputiesId" reference="deputies" />
             <TextField source="result" />
             <DateField source="date" />
             <EditButton />
@@ -32,9 +46,9 @@ export const BillEdit = (props) => (
                 <TextInput label="Slug" source="slug" />
                 
                 <BooleanInput label="Propsed by Government?" source="proposedByGovernment" />
-                <ReferenceInput label="Proposer (Ignored if Proposed by Goverment)" source="proposerDeputyId" reference="deputies" perPage={1000} allowEmpty>
-                    <SelectInput optionText="name.zh" />
-                </ReferenceInput>
+                <ReferenceArrayInput label="Proposer (Ignored if Proposed by Government)" source="proposerDeputiesId" reference="deputies" perPage={1000} allowEmpty>
+                    <SelectArrayInput optionText="name.zh" />
+                </ReferenceArrayInput>
 
                 <LongTextInput label="Synopsis (Chinese)" source="synopsis.zh" />
                 <LongTextInput label="Synopsis (English)" source="synopsis.en" />
