@@ -1,7 +1,7 @@
 import React from 'react';
 import { jsonServerRestClient, fetchUtils, Admin, Resource, Delete } from 'admin-on-rest';
 
-import { HomeCreate, HomeList, HomeEdit } from './collections/home';
+import { HomeCreate, HomeList, HomeEdit } from './collections/homes';
 import { DeputyList, DeputyEdit } from './collections/deputies';
 import { BillList, BillEdit, BillCreate } from './collections/bills';
 import { DocumentList, DocumentEdit, DocumentCreate } from './collections/documents';
@@ -28,7 +28,7 @@ const uploadCapableClient = addUploadFeature(restClient);
 
 const App = () => (
   <Admin restClient={uploadCapableClient} authClient={authClient} title="ERROR 451 Legco Monitor Admin">
-    <Resource name="home" icon={HomeIcon} list={HomeList} edit={HomeEdit} create={HomeCreate} remove={Delete} />
+    <Resource name="homes" icon={HomeIcon} list={HomeList} edit={HomeEdit} create={HomeCreate} remove={Delete} />
     <Resource name="deputies" icon={DeputyIcon} list={DeputyList} edit={DeputyEdit} />
     <Resource name="bills" icon={BillIcon} list={BillList} edit={BillEdit} create={BillCreate} remove={Delete} />
     <Resource name="documents" icon={DocumentIcon} list={DocumentList} edit={DocumentEdit} create={DocumentCreate} remove={Delete} />
