@@ -82,6 +82,10 @@ export const BillEdit = (props) => (
                         { id: 'P', name: 'Abstain' },
                         { id: 'A', name: 'Absent' },
                     ]} />
+                    <RadioButtonGroupInput label="Special Status" source="specialStatus" options={{className: 'bill__voting-result__item__vote'}} choices={[
+                        { id: '', name: 'None' },
+                        { id: 'S', name: 'Suspended' },
+                    ]} />
                     <LongTextInput label="Comment (Chinese, Optional)" source="comment.zh" />
                     <LongTextInput label="Comment (English, Optional)" source="comment.en" />
                 </EmbeddedArrayInput>
